@@ -77,6 +77,8 @@ jobs:
           fi
           chmod +x update_baseline.sh
           ./update_baseline.sh
+          mkdir result
+          cp -r test/baseline result
 
       - if: github.event_name == 'pull_request'
         name: Run autotest script
