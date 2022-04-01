@@ -32,6 +32,7 @@ PAG_TEST_CASE(MultiThreadCase)
 void mockPAGView() {
   auto file = PAGFile::Load(DEFAULT_PAG_PATH);
   ASSERT_NE(file, nullptr) << "pag path is:" << DEFAULT_PAG_PATH << std::endl;
+  printf("------mockPAGView---start---\n");
   auto surface = PAGSurface::MakeOffscreen(file->width(), file->height());
   auto player = std::make_shared<PAGPlayer>();
   player->setSurface(surface);
@@ -39,19 +40,24 @@ void mockPAGView() {
   ASSERT_NE(surface, nullptr);
   player->setComposition(file);
   int num = 20;
+  printf("------mockPAGView---init end---\n");
   for (int i = 0; i < num; i++) {
     long time = file->duration() * i / num;
     file->setCurrentTime(time);
     player->flush();
+    printf("-----mockPAGView--flush:%d \n", i);
     MakeSnapshot(surface);
+    printf("-----mockPAGView--MakeSnapshot:%d \n", i);
     std::this_thread::sleep_for(std::chrono::milliseconds(20));
   }
+  printf("------mockPAGView---start---\n");
 }
 
 /**
  * 用例描述: 使用多个PAGPlayer模拟多个PAGView同时渲染
  */
 PAG_TEST(SimpleMultiThreadCase, MultiPAGView) {
+  printf("------MultiPAGView---start---\n");
   std::vector<std::thread> threads;
   int num = 10;
   for (int i = 0; i < num; i++) {
@@ -60,6 +66,7 @@ PAG_TEST(SimpleMultiThreadCase, MultiPAGView) {
   for (auto& mock : threads) {
     if (mock.joinable()) mock.join();
   }
+  printf("------MultiPAGView---end---\n");
 }
 
 void mockAsyncFlush(int num = 30) {
