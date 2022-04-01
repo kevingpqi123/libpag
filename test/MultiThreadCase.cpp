@@ -58,14 +58,14 @@ void mockPAGView() {
  */
 PAG_TEST(SimpleMultiThreadCase, MultiPAGView) {
   printf("-----SimpleMultiThreadCase-MultiPAGView---start---\n");
-//  std::vector<std::thread> threads;
-//  int num = 10;
-//  for (int i = 0; i < num; i++) {
-//    threads.emplace_back(std::thread(mockPAGView));
-//  }
-//  for (auto& mock : threads) {
-//    if (mock.joinable()) mock.join();
-//  }
+  std::vector<std::thread> threads;
+  int num = 10;
+  for (int i = 0; i < num; i++) {
+    threads.emplace_back(std::thread(mockPAGView));
+  }
+  for (auto& mock : threads) {
+    if (mock.joinable()) mock.join();
+  }
   printf("-----SimpleMultiThreadCase-MultiPAGView---end---\n");
 }
 
