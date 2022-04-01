@@ -78,6 +78,7 @@ void glGetShaderPrecisionFormatMock(unsigned, unsigned, int* range, int* precisi
  * 用例描述: 测试OpenGL版本获取是否正确
  */
 PAG_TEST_F(GLUtilTest, Version_ID82986995) {
+  printf("-----GLUtilTest-Version_ID82986995---start---\n");
   // 实参为空指针验证
   auto glVersion = GetGLVersion(nullptr);
   EXPECT_EQ(glVersion.majorVersion, -1);
@@ -105,6 +106,7 @@ PAG_TEST_F(GLUtilTest, Version_ID82986995) {
   glVersion = GetGLVersion("OpenGL ES 2.0 Apple A8 GPU - 50.5.1");
   EXPECT_EQ(glVersion.majorVersion, 2);
   EXPECT_EQ(glVersion.minorVersion, 0);
+  printf("-----GLUtilTest-Version_ID82986995---end---\n");
 }
 
 /**
@@ -112,6 +114,7 @@ PAG_TEST_F(GLUtilTest, Version_ID82986995) {
  */
 PAG_TEST_F(GLUtilTest, Caps_ID82991749) {
   {
+    printf("-----GLUtilTest-Caps_ID82991749---start---\n");
     GLInfo info(glGetStringMock, nullptr, getIntegervMock, glGetInternalformativMock,
                 glGetShaderPrecisionFormatMock);
     GLCaps caps(info);
@@ -123,6 +126,8 @@ PAG_TEST_F(GLUtilTest, Caps_ID82991749) {
     EXPECT_EQ(caps.getSampleCount(10, PixelFormat::RGBA_8888), 1);
     EXPECT_EQ(caps.getSampleCount(0, PixelFormat::RGBA_8888), 1);
     EXPECT_EQ(caps.getSampleCount(5, PixelFormat::ALPHA_8), 1);
+
+    printf("-----GLUtilTest-Caps_ID82991749---end---\n");
   }
   {
     ++i;

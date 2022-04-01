@@ -57,7 +57,7 @@ void mockPAGView() {
  * 用例描述: 使用多个PAGPlayer模拟多个PAGView同时渲染
  */
 PAG_TEST(SimpleMultiThreadCase, MultiPAGView) {
-  printf("------MultiPAGView---start---\n");
+  printf("-----SimpleMultiThreadCase-MultiPAGView---start---\n");
   std::vector<std::thread> threads;
   int num = 10;
   for (int i = 0; i < num; i++) {
@@ -66,7 +66,7 @@ PAG_TEST(SimpleMultiThreadCase, MultiPAGView) {
   for (auto& mock : threads) {
     if (mock.joinable()) mock.join();
   }
-  printf("------MultiPAGView---end---\n");
+  printf("-----SimpleMultiThreadCase-MultiPAGView---end---\n");
 }
 
 void mockAsyncFlush(int num = 30) {
@@ -83,6 +83,7 @@ void mockAsyncFlush(int num = 30) {
  * 用例描述: 测试在A线程调用flush，B线程同时进行编辑操作
  */
 PAG_TEST_F(MultiThreadCase, AsyncFlush) {
+  printf("-----MultiThreadCase-AsyncFlush---start---\n");
   auto mockThread = std::thread(mockAsyncFlush, 10);
   std::shared_ptr<PAGComposition> pagCom =
       std::static_pointer_cast<PAGComposition>(TestPAGFile->getLayerAt(0));
@@ -110,6 +111,7 @@ PAG_TEST_F(MultiThreadCase, AsyncFlush) {
  * 用例描述: 测试在A线程调用flush，B线程进行freeCache
  */
 PAG_TEST_F(MultiThreadCase, AsyncFlushAndFreeCache) {
+  printf("-----MultiThreadCase-AsyncFlushAndFreeCache---start---\n");
   ASSERT_NE(TestPAGFile, nullptr);
   auto mockThread = std::thread(mockAsyncFlush, 200);
   for (int i = 0; i < 200; i++) {
@@ -126,6 +128,7 @@ PAG_TEST_F(MultiThreadCase, AsyncFlushAndFreeCache) {
  * 多线程会不会引起死锁之类的问题，正确性是HitTest接口本身来保证
  */
 PAG_TEST_F(MultiThreadCase, HitTestPoint) {
+  printf("-----MultiThreadCase-HitTestPoint---start---\n");
   auto mockThread = std::thread(mockAsyncFlush, 30);
   for (int i = 0; i < 15; i++) {
     TestPAGPlayer->hitTestPoint(TestPAGFile, 720.0 * i / 15, 1080.0 * i / 15, true);
@@ -137,6 +140,7 @@ PAG_TEST_F(MultiThreadCase, HitTestPoint) {
  * 用例描述: GetLayersUnderPoint功能测试
  */
 PAG_TEST_F(MultiThreadCase, GetLayersUnderPoint) {
+  printf("-----MultiThreadCase-GetLayersUnderPoint---start---\n");
   auto mockThread = std::thread(mockAsyncFlush, 30);
   for (int i = 0; i < 30; i++) {
     TestPAGFile->getLayersUnderPoint(720.0 * i / 15, 1080.0 * i / 15);
@@ -150,6 +154,7 @@ PAG_TEST_CASE(MultiThreadCase_BitmapSequenceHitTest)
  * 用例描述: 图片序列帧的hitTest"
  */
 PAG_TEST_F(MultiThreadCase_BitmapSequenceHitTest, BitmapSequenceHitTestPoint) {
+  printf("-----MultiThreadCase_BitmapSequenceHitTest-BitmapSequenceHitTestPoint---start---\n");
   auto mockThread = std::thread(mockAsyncFlush, 30);
   for (int i = 0; i < 30; i++) {
     TestPAGPlayer->hitTestPoint(TestPAGFile, 720.0 * i / 15, 1080.0 * i / 15, true);
@@ -163,6 +168,7 @@ PAG_TEST_CASE(MultiThreadCase_VideoSequenceHitTest)
  * 用例描述: 视频序列帧的hitTest
  */
 PAG_TEST_F(MultiThreadCase_VideoSequenceHitTest, VideoSequenceHitTestPoint) {
+  printf("-----MultiThreadCase_BitmapSequenceHitTest-VideoSequenceHitTestPoint---start---\n");
   auto mockThread = std::thread(mockAsyncFlush, 30);
   for (int i = 0; i < 30; i++) {
     TestPAGPlayer->hitTestPoint(TestPAGFile, 720.0 * i / 15, 1080.0 * i / 15, true);
