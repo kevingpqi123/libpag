@@ -112,14 +112,14 @@ PAG_TEST_F(MultiThreadCase, AsyncFlush) {
  */
 PAG_TEST_F(MultiThreadCase, AsyncFlushAndFreeCache) {
   printf("-----MultiThreadCase-AsyncFlushAndFreeCache---start---\n");
-//  ASSERT_NE(TestPAGFile, nullptr);
-//  auto mockThread = std::thread(mockAsyncFlush, 200);
-//  for (int i = 0; i < 200; i++) {
-//    PAGCpuTest::TestPAGSurface->freeCache();
-//    std::this_thread::sleep_for(std::chrono::milliseconds(5));
-//  }
-//  std::cout << "\nAsyncFlush edit" << std::endl;
-//  mockThread.join();
+  ASSERT_NE(TestPAGFile, nullptr);
+  auto mockThread = std::thread(mockAsyncFlush, 200);
+  for (int i = 0; i < 200; i++) {
+    PAGCpuTest::TestPAGSurface->freeCache();
+    std::this_thread::sleep_for(std::chrono::milliseconds(5));
+  }
+  std::cout << "\nAsyncFlush edit" << std::endl;
+  mockThread.join();
 }
 
 /**

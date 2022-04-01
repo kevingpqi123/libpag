@@ -75,10 +75,12 @@ jobs:
           if [ ! $(which gcovr) ]; then
             brew install gcovr
           fi
-          chmod +x update_baseline.sh
-          ./update_baseline.sh
+#          chmod +x update_baseline.sh
+#          ./update_baseline.sh
           mkdir result
           cp -r test/baseline result
+          chmod +x autotest.sh
+          ./autotest.sh
 
       - if: github.event_name == 'pull_request'
         name: Run autotest script
