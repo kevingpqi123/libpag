@@ -1,4 +1,5 @@
 #!/bin/sh
+{
   CACHE_VERSION_FILE=./test/baseline/.cache/version.json
   if [ -f "$CACHE_VERSION_FILE" ]; then
     HAS_DIFF=$(git diff --name-only main:test/baseline/version.json $CACHE_VERSION_FILE)
@@ -7,11 +8,11 @@
     fi
   fi
   echo "~~~~~~~~~~~~~~~~~~~Update Baseline Start~~~~~~~~~~~~~~~~~~~~~"
-  CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  STASH_LIST_BEFORE=$(git stash list)
-  git stash push --quiet
-  STASH_LIST_AFTER=$(git stash list)
-  git switch main --quiet
+#  CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+#  STASH_LIST_BEFORE=$(git stash list)
+#  git stash push --quiet
+#  STASH_LIST_AFTER=$(git stash list)
+#  git switch main --quiet
 
   if [[ $1 == "1" ]]; then
     BUILD_DIR=build
@@ -47,10 +48,11 @@
   ./PAGBaseline
   cd ..
 
-  git switch $CURRENT_BRANCH --quiet
-  if [[ $STASH_LIST_BEFORE != "$STASH_LIST_AFTER" ]]; then
-    git stash pop --index --quiet
-  fi
+#  git switch $CURRENT_BRANCH --quiet
+#  if [[ $STASH_LIST_BEFORE != "$STASH_LIST_AFTER" ]]; then
+#    git stash pop --index --quiet
+#  fi
 
   echo "~~~~~~~~~~~~~~~~~~~Update Baseline END~~~~~~~~~~~~~~~~~~~~~"
   exit
+}
