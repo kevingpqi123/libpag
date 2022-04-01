@@ -72,29 +72,34 @@ tgfx::GLSampler GetBottomLeftImage(std::shared_ptr<Device> device, int width, in
  * 用例描述: 使用blend时，如果当前的frameBuffer是BottomLeft的，复制逻辑验证
  */
 PAG_TEST_F(PAGBlendTest, CopyDstTexture) {
-//  auto width = 400;
-//  auto height = 400;
-//  auto device = GLDevice::Make();
-//  auto context = device->lockContext();
-//  ASSERT_TRUE(context != nullptr);
-//  tgfx::GLSampler textureInfo;
-//  CreateGLTexture(context, width, height, &textureInfo);
-//  auto backendTexture = ToBackendTexture(textureInfo, width, height);
-//  auto pagSurface = PAGSurface::MakeFrom(backendTexture, ImageOrigin::BottomLeft);
-//  device->unlock();
-//  auto pagPlayer = std::make_shared<PAGPlayer>();
-//  pagPlayer->setSurface(pagSurface);
-//  auto pagFile = PAGFile::Load("../resources/blend/Multiply.pag");
-//  pagPlayer->setComposition(pagFile);
-//  pagPlayer->setMatrix(Matrix::I());
-//  pagPlayer->setProgress(0.5);
-//  pagPlayer->flush();
-//  EXPECT_TRUE(Baseline::Compare(pagSurface, "PAGBlendTest/CopyDstTexture"));
-//
-//  context = device->lockContext();
-//  auto gl = GLFunctions::Get(context);
-//  gl->deleteTextures(1, &textureInfo.id);
-//  device->unlock();
+  printf("----PAGBlendTest---CopyDstTexture------00----------\n");
+  auto width = 400;
+  auto height = 400;
+  auto device = GLDevice::Make();
+  auto context = device->lockContext();
+  printf("----PAGBlendTest---CopyDstTexture------01----------\n");
+  ASSERT_TRUE(context != nullptr);
+  tgfx::GLSampler textureInfo;
+  CreateGLTexture(context, width, height, &textureInfo);
+  printf("----PAGBlendTest---CopyDstTexture------02----------\n");
+  auto backendTexture = ToBackendTexture(textureInfo, width, height);
+  auto pagSurface = PAGSurface::MakeFrom(backendTexture, ImageOrigin::BottomLeft);
+  device->unlock();
+  printf("----PAGBlendTest---CopyDstTexture------03----------\n");
+  auto pagPlayer = std::make_shared<PAGPlayer>();
+  pagPlayer->setSurface(pagSurface);
+  auto pagFile = PAGFile::Load("../resources/blend/Multiply.pag");
+  pagPlayer->setComposition(pagFile);
+  pagPlayer->setMatrix(Matrix::I());
+  pagPlayer->setProgress(0.5);
+  pagPlayer->flush();
+  EXPECT_TRUE(Baseline::Compare(pagSurface, "PAGBlendTest/CopyDstTexture"));
+  printf("----PAGBlendTest---CopyDstTexture------04----------\n");
+  context = device->lockContext();
+  auto gl = GLFunctions::Get(context);
+  gl->deleteTextures(1, &textureInfo.id);
+  device->unlock();
+  printf("----PAGBlendTest---CopyDstTexture------05----------\n");
 }
 
 /**
