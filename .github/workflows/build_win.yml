@@ -54,6 +54,7 @@ jobs:
            depsync
            which depsync
            which node
+           echo "----test--"
            #node build_vendor -p win
 
       - if: github.event_name == 'pull_request'
