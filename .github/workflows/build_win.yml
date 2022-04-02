@@ -39,7 +39,7 @@ jobs:
         with:
           path: |
             /c/npm/prefix/depsync
-          key: libpag-win-environment-20220402
+          key: libpag-win-environment-20220402-00
           restore-keys: libpag-win-environment
       - name: Check cache-environment status
         if: steps.cache-environment.outputs.cache-hit != 'true'
@@ -51,7 +51,9 @@ jobs:
         name: Build cache（push）
         run: |
            depsync
-           node build_vendor -p win
+           which depsync
+           where depsync
+           #node build_vendor -p win
 
       - if: github.event_name == 'pull_request'
         name: Windows build
