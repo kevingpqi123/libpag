@@ -28,12 +28,11 @@ uint16_t PAGFile::MaxSupportedTagLevel() {
   return File::MaxSupportedTagLevel();
 }
 
-std::shared_ptr<PAGFile> PAGFile::Load(const void* bytes, size_t length,
+std::shared_ptr<PAGFile> PAGFile::Load(const void *bytes, size_t length,
                                        const std::string& filePath) {
   auto file = File::Load(bytes, length, filePath);
   return MakeFrom(file);
 }
-
 std::shared_ptr<PAGFile> PAGFile::Load(const std::string& filePath) {
   auto file = File::Load(filePath);
   return MakeFrom(file);
@@ -57,7 +56,7 @@ std::shared_ptr<PAGFile> PAGFile::MakeFrom(std::shared_ptr<File> file) {
   return pagFile;
 }
 
-std::shared_ptr<PAGLayer> PAGFile::BuildPAGLayer(std::shared_ptr<File> file, Layer* layer) {
+std::shared_ptr<PAGLayer> PAGFile::BuildPAGLayer(std::shared_ptr<File> file, Layer * layer) {
   PAGLayer* pagLayer;
   switch (layer->type()) {
     case LayerType::Solid: {
