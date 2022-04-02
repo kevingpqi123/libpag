@@ -55,7 +55,7 @@ jobs:
         run: |
            echo "---test---"
            npm_cache/node_modules/depsync/bin/depsync
-           #node build_vendor -p win
+           node build_vendor -p win
 
       - if: github.event_name == 'pull_request'
         name: Windows build
