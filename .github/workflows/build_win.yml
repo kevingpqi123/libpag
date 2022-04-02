@@ -46,7 +46,7 @@ jobs:
         if: steps.cache-environment.outputs.cache-hit != 'true'
         run: |
           npm install depsync -g
-          echo "----cd /c/npm/prefix/node_modules--"
+          echo "----cd /c/npm/prefix/node_modules---"
           cd /c/npm/prefix/node_modules
           ls
         shell: bash
