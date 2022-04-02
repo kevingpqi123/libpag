@@ -40,14 +40,14 @@ jobs:
           path: |
             /c/npm/prefix/depsync
             /c/npm/prefix/node_modules/depsync
-          key: libpag-win-environment-20220402-06
+          key: libpag-win-environment-20220402-07
           restore-keys: libpag-win-environment
       - name: Check cache-environment status
         if: steps.cache-environment.outputs.cache-hit != 'true'
         run: |
           npm install depsync -g
-          echo "----cd /c/npm/prefix/--"
-          cd /c/npm/prefix/
+          echo "----cd /c/npm/prefix/node_modules--"
+          cd /c/npm/prefix/node_modules
           ls
         shell: bash
 
