@@ -53,7 +53,7 @@ jobs:
       - if: github.event_name == 'push'
         name: Build cache（push）
         run: |
-           echo "---test---"
+           echo "---test--"
            npm_cache/node_modules/depsync/bin/depsync
            node build_vendor -p win
 
