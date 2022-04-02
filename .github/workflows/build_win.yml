@@ -40,7 +40,7 @@ jobs:
           path: |
             /c/npm/prefix/depsync
             /c/npm/prefix/node_modules/depsync
-          key: libpag-win-environment-20220402-08
+          key: libpag-win-environment-20220402-09
           restore-keys: libpag-win-environment
       - name: Check cache-environment status
         if: steps.cache-environment.outputs.cache-hit != 'true'
