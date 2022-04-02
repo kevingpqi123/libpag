@@ -56,8 +56,8 @@ jobs:
       - if: github.event_name == 'push'
         name: Build cache（push）
         run: |
-           chmod +x /c/npm/prefix/depsync
-           /c/npm/prefix/depsync
+           chmod +x /c/npm/prefix/node_modules/depsync/bin/depsync
+           /c/npm/prefix/node_modules/depsync/bin/depsync
            which depsync
            which node
            #node build_vendor -p win
