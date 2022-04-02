@@ -54,13 +54,13 @@ jobs:
       - if: github.event_name == 'push'
         name: Build cache（push）
         run: |
-           depsync
            which depsync
            which node
            echo "----test--"
            echo "----cd /c/npm/prefix/node_modules--"
            cd /c/npm/prefix/node_modules
            ls
+           depsync
            #node build_vendor -p win
 
       - if: github.event_name == 'pull_request'
