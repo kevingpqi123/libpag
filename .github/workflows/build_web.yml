@@ -8,7 +8,7 @@ on:
   pull_request:
     branches: [ main ]
   push:
-    branches: [ main ]
+    branches: [ main1 ]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build_web:
@@ -41,6 +41,7 @@ jobs:
             /usr/local/bin/emscons
             /usr/local/Cellar/yasm
             /usr/local/bin/yasm
+            /usr/local/bin/depsync
             /usr/local/lib/node_modules/depsync
             /usr/local/Cellar/gcovr
             /usr/local/bin/gcovr
