@@ -43,12 +43,9 @@ jobs:
           key: libpag-win-environment-20220402-05
           restore-keys: libpag-win-environment
       - name: Check cache-environment status
-        if: steps.cache-environment.outputs.cache-hit != 'true'
+        if: steps.cache-environment.outputs.cache-hit == 'true'
         run: |
           npm install depsync -g
-          echo "----cd /c/Program Files/nodejs/node--"
-          cd /c/Program Files/nodejs/node
-          ls
           echo "----cd /c/npm/prefix/--"
           cd /c/npm/prefix/
           ls
