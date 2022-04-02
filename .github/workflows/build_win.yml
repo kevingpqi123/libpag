@@ -51,7 +51,7 @@ jobs:
       - if: github.event_name == 'push'
         name: Build cache（push）
         run: |
-          # node build_vendor -p win
+           node build_vendor -p win
 
       - if: github.event_name == 'pull_request'
         name: Windows build
