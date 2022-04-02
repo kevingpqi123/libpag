@@ -52,7 +52,7 @@ jobs:
         run: |
            depsync
            which depsync
-           where depsync
+           npm config get prefix
            #node build_vendor -p win
 
       - if: github.event_name == 'pull_request'
