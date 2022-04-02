@@ -39,16 +39,14 @@ jobs:
         with:
           path: |
             npm_cache
-          key: libpag-win-environment-20220402-12
+          key: libpag-win-environment-20220402-13
           restore-keys: libpag-win-environment
       - name: Check cache-environment status
         if: steps.cache-environment.outputs.cache-hit != 'true'
         run: |
-          if [ ! -d "npm_cache"]; then
-             mkdir npm_cache
-          fi
+          rm -rf npm_cache
+          mkdir npm_cache
           cd npm_cache
-          rm -rf *
           npm install depsync
         shell: bash
 
