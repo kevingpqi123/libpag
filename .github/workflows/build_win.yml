@@ -33,11 +33,19 @@ jobs:
           key: third_party-win-${{ hashFiles('DEPS') }}-${{ hashFiles('vendor.json') }}
           restore-keys: third_party-win-
 
-      - name: Run depsync
+      - name: Get environment cache
+        id: cache-environment
+        uses: actions/cache@v2
+        with:
+          path: |
+            /c/npm/prefix/depsync
+          key: libpag-win-environment-20220402
+          restore-keys: libpag-win-environment
+      - name: Check cache-environment status
+        if: steps.cache-environment.outputs.cache-hit != 'true'
         run: |
           npm install depsync -g
           depsync
-          which depsync
         shell: bash
 
       - if: github.event_name == 'push'
