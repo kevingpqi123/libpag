@@ -58,7 +58,6 @@ jobs:
         run: |
            which depsync
            which node
-           /c/npm/prefix/node_modules/depsync
            #node build_vendor -p win
 
       - if: github.event_name == 'pull_request'
