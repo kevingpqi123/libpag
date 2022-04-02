@@ -53,13 +53,13 @@ jobs:
       - if: github.event_name == 'push'
         name: Build cache（push）
         run: |
-           echo "---test---"
+           echo "---test--"
            npm_cache/node_modules/depsync/bin/depsync
            node build_vendor -p win
 
       - if: github.event_name == 'pull_request'
         name: Windows build
         run: |
-          depsync
+          npm_cache/node_modules/depsync/bin/depsync
           node ./vendor_tools/cmake-build pag -p win -o ./win/paglib -v -i -DPAG_BUILD_SHARED=ON
         shell: bash
