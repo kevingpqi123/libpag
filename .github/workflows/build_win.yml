@@ -38,28 +38,24 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            /c/npm/prefix/depsync
-            /c/npm/prefix/depsync.cmd
-            /c/npm/prefix/depsync.ps1
-            /c/npm/prefix/node_modules/depsync
-          key: libpag-win-environment-20220402-11
+            npm_cache
+          key: libpag-win-environment-20220402-12
           restore-keys: libpag-win-environment
       - name: Check cache-environment status
         if: steps.cache-environment.outputs.cache-hit != 'true'
         run: |
-          npm install depsync -g
-          echo "----cd /c/npm/prefix/node_modules---"
-          cd /c/npm/prefix/node_modules
-          ls
+          if [ ! -d "npm_cache"]; then
+             mkdir npm_cache
+          fi
+          cd npm_cache
+          rm -rf *
+          npm install depsync
         shell: bash
 
       - if: github.event_name == 'push'
         name: Build cache（push）
         run: |
-           chmod +x /c/npm/prefix/node_modules/depsync/bin/depsync
-           /c/npm/prefix/node_modules/depsync/bin/depsync
-           which depsync
-           which node
+           npm_cache/node_modules/depsync/bin/depsync
            #node build_vendor -p win
 
       - if: github.event_name == 'pull_request'
