@@ -39,7 +39,7 @@ jobs:
         with:
           path: |
             /c/npm/prefix/depsync
-          key: libpag-win-environment-20220402-01
+          key: libpag-win-environment-20220402-02
           restore-keys: libpag-win-environment
       - name: Check cache-environment status
         if: steps.cache-environment.outputs.cache-hit != 'true'
@@ -52,6 +52,9 @@ jobs:
         run: |
            depsync
            which depsync
+           where depsync
+           which node
+           where node
            npm config get prefix
            #node build_vendor -p win
 
