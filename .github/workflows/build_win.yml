@@ -40,7 +40,7 @@ jobs:
           path: |
             /c/npm/prefix/depsync
             /c/npm/prefix/node_modules/depsync
-          key: libpag-win-environment-20220402-07
+          key: libpag-win-environment-20220402-08
           restore-keys: libpag-win-environment
       - name: Check cache-environment status
         if: steps.cache-environment.outputs.cache-hit != 'true'
@@ -54,13 +54,13 @@ jobs:
       - if: github.event_name == 'push'
         name: Build cache（push）
         run: |
+           depsync
            which depsync
            which node
            echo "----test--"
            echo "----cd /c/npm/prefix/node_modules--"
            cd /c/npm/prefix/node_modules
            ls
-           depsync
            #node build_vendor -p win
 
       - if: github.event_name == 'pull_request'
