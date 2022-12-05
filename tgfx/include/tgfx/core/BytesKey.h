@@ -20,6 +20,7 @@
 
 #include <cstdint>
 #include <vector>
+#include <cstddef>
 
 namespace tgfx {
 /**
